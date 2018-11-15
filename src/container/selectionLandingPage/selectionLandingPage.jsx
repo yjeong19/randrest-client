@@ -47,7 +47,7 @@ class selectionLandingPage extends Component {
   updateLikes(e){
     postLikes(this.props.state.selection.id, e.target.id)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       this.props.addLikes(res.data);
     })
     .catch(err => {
@@ -130,7 +130,7 @@ class selectionLandingPage extends Component {
   //function below creates newly selected restaurants, if it had not been created in DB alraedy.
   //function is run at componentdidmount to check existance.
   renderSelectedInfo(){
-    console.log(this.props.state.selection);
+    // console.log(this.props.state.selection);
     let info = this.props.state.selection ? this.props.state.selection : '';
     if(info !== '') {
       checkPost(info)
@@ -157,7 +157,7 @@ class selectionLandingPage extends Component {
   };
 
   renderLeafletMap(){
-    console.log(this.props.state.selection);
+    // console.log(this.props.state.selection);
     let coord = this.props.state.selection !== null ? this.props.state.selection.coordinates : '';
     let { latitude, longitude } = coord;
     // let long = coor.longitude !== null ? coor.longitude: 0;

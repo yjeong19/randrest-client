@@ -14,7 +14,7 @@ const initialState = {
 const searchResultsReducer = ((state = initialState, action) => {
   switch(action.type){
     case ADD_SEARCH_RESULTS:
-      console.log(action.payload, 'line 11 REDUX REDUCER ---------');
+      // console.log(action.payload, 'line 11 REDUX REDUCER ---------');
       return {
         search: [...action.payload],
         state: 'search'
@@ -22,7 +22,7 @@ const searchResultsReducer = ((state = initialState, action) => {
       break;
 
     case ADD_RANDOM_RESTAURANT:
-      console.log(action.payload, 'line 16 redux random restaurant -------')
+      // console.log(action.payload, 'line 16 redux random restaurant -------')
       return {
         ...state,
         random: action.payload,
@@ -31,7 +31,7 @@ const searchResultsReducer = ((state = initialState, action) => {
       break;
 
     case ADD_USER_SELECTION:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         selection: action.payload,

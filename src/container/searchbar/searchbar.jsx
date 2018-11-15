@@ -32,7 +32,7 @@ class searchbar extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   componentDidUpdate(){
@@ -40,7 +40,7 @@ class searchbar extends Component {
   }
 
   togglePrice(e){
-    console.log(this.id)
+    // console.log(this.id)
     e.target.id == this.searchbarInput.price ? e.target.className = "btn btn-secondary active" : e.target.className = "btn btn-secondary";
   }
 
@@ -65,7 +65,7 @@ class searchbar extends Component {
     this.searchbarInput.price = e.target.id;
     this.togglePrice(e);
     // this.searchbarInput.price === e.target.id ? e.target.className = "btn btn-secondary active" : e.target.className = "btn btn-secondary";
-    console.log(this.searchbarInput);
+    // console.log(this.searchbarInput);
 
   }
 

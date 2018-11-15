@@ -10,7 +10,7 @@ class choiceCards extends Component {
   }
 
   componentDidMount(){
-    console.log(this.props);
+    // console.log(this.props);
   }
 
   //handle user selection then route to landing page

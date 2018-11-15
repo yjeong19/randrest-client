@@ -12,7 +12,7 @@ const url = 'https://randrest-server.herokuapp.com/'
 
 //likes/dislikes
 export const postLikes = (id, like) => {
-  console.log('getting likes, or posting',id, like);
+  // console.log('getting likes, or posting',id, like);
   return axios.put(`${url}/restaurant/likes`, {
     id,
     like,
@@ -22,7 +22,7 @@ export const postLikes = (id, like) => {
 //grabs comment by restaurant id;
 export const getComments = (params) => {
   // let { id } = param;
-  console.log('grabbing comments', params);
+  // console.log('grabbing comments', params);
   return axios.get(`${url}/restaurant/comments`, {
     params
   })
@@ -30,8 +30,8 @@ export const getComments = (params) => {
 
 //create comment
 export const createComment = (comment) => {
-  console.log('add comment');
-  console.log(comment);
+  // console.log('add comment');
+  // console.log(comment);
   return axios.put(`${url}/restaurant/comment`, {
     params: comment,
   })
@@ -40,8 +40,8 @@ export const createComment = (comment) => {
 
 //is this create post method even required anymore? checkPost below creates new field if object doesnt exist.
 export const createPost = (data) => {
-  console.log('create post activated');
-  console.log(data);
+  // console.log('create post activated');
+  // console.log(data);
   return axios.post(`${url}/restaurant`,{
     params: data
   })
@@ -50,10 +50,11 @@ export const createPost = (data) => {
 //put method, does it create new one if it exists?
 //this method creates a new restaurant model if it dne, else returns existing i believe.
 export const checkPost = (data) => {
-  console.log("checkpost activated")
+  // console.log("checkpost activated")
   return axios.put(`${url}/restaurant/selected`, {
     params: data
   })
 };
 
 // export default (createPost, checkPost);
+//
