@@ -1,0 +1,15 @@
+#root{
+  background-color: #A8D0E6;
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+  /* padding-bottom: 20px; */
+}
+
+h1{
+  font-family: 'Fredoka One', cursive;
+  color: #24305E;
+  /* text-shadow: 5px black; */
+}

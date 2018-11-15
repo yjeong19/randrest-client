@@ -1,0 +1,43 @@
+#searchbar{
+  /* background-color: purple; */
+  border-color: red;
+}
+
+.pick_something{
+  text-align: center;
+
+}
+
+.search_button{
+  background-color: #F76C6C;
+  border: 2px solid;
+  margin: 5px;
+}
+
+.price_choice{
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.search_main{
+  background-color: inherit;
+}
+
+.search_container{
+  background-color: white;
+  border-radius: 10px;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.search_form{
+  align-items: flex-end;
+  background-color: inherit;
+  align-content: center;
+}
+
+/* .nav.navbar.bg-light.search_container{
+  background-color: pur;
+} */

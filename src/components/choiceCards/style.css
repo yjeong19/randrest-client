@@ -1,0 +1,31 @@
+.rest_img{
+  margin: 1%;
+  border-radius: 30px;
+  border: 1px solid;
+  padding: 0;
+}
+
+.card_wrapper{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.card_title{
+  color: black;
+}
+
+.card_info{
+  color: black;
+}
+
+.card_items{
+  justify-content: center;
+}
+
+.price{
+  color: black;
+}
+
+.rating{
+  color: black;
+}
