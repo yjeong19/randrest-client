@@ -4,19 +4,7 @@ import * as actions from '../../redux/actions';
 import ChoiceCards from '../../components/choiceCards';
 import { Link } from 'react-router-dom';
 
-//importing selectionlandingpage for now, route to based on click later;
-import SelectionLandingPage from '../selectionLandingPage';
-
-//temporarily importing searchbar
-//is it better to make searchbar its own page
-
-
 class resultsPage extends Component {
-  constructor(props){
-    super(props);
-
-    //bind events
-  }
 
   componentDidMount(){
     // console.log(this.props);

@@ -9,8 +9,6 @@ const likesReducer = (state = initialState, action) => {
     case ADD_LIKES:
       // console.log(action.likes, 'likes reducer activated ==========');
       return Object.assign({}, action.likes);
-      break;
-
     default:
       return state;
   }

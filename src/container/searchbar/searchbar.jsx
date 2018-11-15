@@ -41,7 +41,7 @@ class searchbar extends Component {
 
   togglePrice(e){
     // console.log(this.id)
-    e.target.id == this.searchbarInput.price ? e.target.className = "btn btn-secondary active" : e.target.className = "btn btn-secondary";
+    e.target.id === this.searchbarInput.price ? e.target.className = "btn btn-secondary active" : e.target.className = "btn btn-secondary";
   }
 
   //this makes keystroke in search bar to searchbarInput object

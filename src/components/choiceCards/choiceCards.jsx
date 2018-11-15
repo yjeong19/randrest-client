@@ -29,7 +29,7 @@ class choiceCards extends Component {
     return(
       <div className="card text-center container card_wrapper">
         <div className = 'row card_items' onClick={this.handleUserSelection}>
-          <img className = 'col-md-3 col-sm-6 col-xs-12 rest_img' width = '200px' height = '200px' src = {this.props.data.image_url}/>
+          <img className = 'col-md-3 col-sm-6 col-xs-12 rest_img' alt='restaurant image' src = {this.props.data.image_url}/>
           <div class="card-body col-md-8 col-sm-6 col-xs-12">
             <h5 class="col-md-8 col-xs-12 card_title">{this.props.data.name}</h5>
             <div className='col-md-8 col-xs-12 card_info' >

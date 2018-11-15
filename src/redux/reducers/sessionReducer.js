@@ -16,8 +16,6 @@ const sessionReducer = (state = _nullUser, action) => {
         handle: action.payload.handle,
         email: action.payload.email,
       };
-      break;
-
     default:
       return state;
   }

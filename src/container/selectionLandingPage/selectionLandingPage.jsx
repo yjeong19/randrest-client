@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import * as actions from '../../redux/actions';
 import {
   checkPost,
-  createPost,
   createComment,
   getComments,
   postLikes,
@@ -113,7 +112,7 @@ class selectionLandingPage extends Component {
           return(
             <div className = 'commentCard row'>
               <h1 className='comment_user col-lg-12'>{comment.user}</h1>
-              <img className='user_img col-lg-2' src='#' width='20px' height = '20px' />
+              <img className='user_img col-lg-2' alt='user profile pic' src='#' width='20px' height = '20px' />
               <div className='comment_info col-lg-6'>
                 <p className='user_comment'>{comment.comment}</p>
                 {/* temp using current date */}
@@ -186,7 +185,7 @@ class selectionLandingPage extends Component {
     return(
       <div className='info_section_wrapper row'>
         <h1 className='restaurant_name col-lg-12'>{info !== '' ? info.name : ''}</h1>
-        <img src = {info !== '' ? info.image_url : ''} className='rest_img col-md-4 col-xs-6' width = '200px' height = '200px'/>
+        <img src = {info !== '' ? info.image_url : ''} alt='restaurant image' className='rest_img col-md-4 col-xs-6' width = '200px' height = '200px'/>
         <div className='landing_info_section col-md-4 col-sm-6'>
           {/* POSSIBLY ADD MAPS FOR REST OF ROW */}
           <p className='rest_address'>{info !== '' ?
