@@ -38,18 +38,13 @@ class selectionLandingPage extends Component {
     this.renderLeafletMap();
     this.renderSelectedInfo();
     this.getCommentsAndLikes();
-    console.log('selection landing page mounted', this.props);
   }
 
 
   componentDidUpdate(){
-    console.log(this.props.state.selection.coordinates);
-    // this.getCommentsAndLikes();
   }
 
   updateLikes(e){
-    console.log(e.target.id);
-    console.log(this.props.state)
     postLikes(this.props.state.selection.id, e.target.id)
     .then(res => {
       console.log(res);
@@ -68,7 +63,6 @@ class selectionLandingPage extends Component {
     if(info !== '') {
       getComments(info)
       .then(res => {
-        console.log(res.data[0], 'line 61 ========')
         res.data[0] !== undefined ? this.props.addComments(res.data[0].comments) : this.props.addComments([])
         // console.log(typeof(res.data[0].likes));
         res.data[0] !== undefined ? this.props.addLikes(res.data[0].likes) : this.props.addLikes({});

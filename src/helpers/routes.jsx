@@ -8,7 +8,7 @@ const axios = require('axios');
 // -- posting comments,
 // -- like/dislike,
 // -- percentage of likes,
-const url = 'http://localhost:8081';
+const url = 'https://randrest-server.herokuapp.com/'
 
 //likes/dislikes
 export const postLikes = (id, like) => {
