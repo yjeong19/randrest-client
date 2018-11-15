@@ -71,10 +71,10 @@ class searchbar extends Component {
 
   //makes api call to yelpAPI in /controller/yelp_api.jsx
   //api returns either random option or a list of options
-  handleSubmit(e){
+  async handleSubmit(e){
     //searchType selects weather it is search or random
     const searchType = e.target.id === 'submit' ? 'search' : 'random';
-    fetchAPI(searchType, this.searchbarInput)
+    await fetchAPI(searchType, this.searchbarInput)
     .then((response) => {
       searchType === 'search' ? this.props.addSearchResults(response.data) : searchType === 'random' ? this.props.addRandomRestaurant(response.data) : console.log('err');
       // this.props.addSearchResults(response.data);
