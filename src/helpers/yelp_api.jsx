@@ -1,8 +1,8 @@
 const axios = require('axios');
-const url = 'https://randrest-server.herokuapp.com/'
+const url = 'https://randrest-server.herokuapp.com'
 
 const fetchAPI = (searchType, searchbarInput) => {
-  return axios.get(`${url}yelp/${searchType}`, {
+  return axios.get(`${url}/yelp/${searchType}`, {
     params: {
       term: searchbarInput.term,
       location: searchbarInput.location,
