@@ -30,12 +30,30 @@
   display: inline-flex;
 }
 
- #mapid {
-   /* height: 100%; */
-   width: 100%;
-   margin-bottom: 10px;
-   border: 3px solid;
-   border-color: #374785;
-   border-radius: 20px;
-   height: 50%; 
+.map_container{
+  height: 400px;
+  margin: 10px 0;
+}
+
+.comment_form{
+  margin: 10px 0;
+}
+
+.comment_form button {
+  background-color: #F8E9A1;
+  border: 2px solid;
+  margin: 0px 5px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+#mapid {
+  /* height: 100%; */
+  height: -webkit-fill-available;
+  height: 100%;
+  width: 100%;
+  /* margin-bottom: 10px; */
+  border: 3px solid;
+  border-color: #374785;
+  border-radius: 20px;
 }
