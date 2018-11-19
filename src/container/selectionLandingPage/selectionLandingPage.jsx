@@ -146,7 +146,7 @@ class selectionLandingPage extends Component {
 
   renderCommentForm(){
     return(
-        <div>
+        <div className='comment_form'>
           {/* temporarily name, add auth later */}
           <input className = 'form-control comment_name' id='user' placeholder = 'user' onChange = {this.handleCommentInput}/>
           <textarea className = 'form-control comment' id='comment' placeholder = 'comment' onChange = {this.handleCommentInput}/>
