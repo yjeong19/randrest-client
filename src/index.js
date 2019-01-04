@@ -6,11 +6,6 @@ import * as serviceWorker from './serviceWorker';
 import { store } from './redux/index.js';
 import './style.css';
 
-const http = require("http");
-setInterval(function() {
-    http.get("http://randrest-client.herokuapp.com");
-}, 300000); // every 5 minutes (300000)
-
 // const store = createStore(rootReducer);
 
 ReactDOM.render(

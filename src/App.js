@@ -5,6 +5,9 @@ import SelectionPage from './container/selectionLandingPage';
 import { Route, BrowserRouter } from 'react-router-dom';
 import './style.css';
 
+//testing
+import Form from './components/signupForm';
+
 
 
 class App extends Component {
@@ -13,6 +16,7 @@ class App extends Component {
       <BrowserRouter className='main_page'>
         <div className="App container main_page" >
             <Searchbar />
+            <Form />
             <Route exact path = '/results' component = {ResultsPage} />
             <Route path = '/restaurant_landing' component = {SelectionPage} />
         </div>
