@@ -15,7 +15,6 @@ class App extends Component {
             <Searchbar />
             <Route exact path = '/results' component = {ResultsPage} />
             <Route path = '/restaurant_landing' component = {SelectionPage} />
-          {/* <Searchbar /> */}
         </div>
       </BrowserRouter>
     );
