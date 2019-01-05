@@ -24,3 +24,17 @@ export const loginUser = (userInfo) => {
     password: userInfo.password,
   })
 };
+
+export const userInfo = (info) => {
+  console.log(typeof(info));
+  const token = info.slice(6);
+  return axios.get(`${url}/users/current`,{
+    headers: {
+      'Authorization': token,
+    }
+  })
+  .then(response => {
+    console.log(response)
+  })
+  .catch(error => {console.log(error)})
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { registerUser, loginUser } from '../../helpers/user_routes';
+import { registerUser, loginUser, userInfo } from '../../helpers/user_routes';
 
 class signupForm extends Component {
   constructor(props){
@@ -70,10 +70,12 @@ class signupForm extends Component {
     .then(res => {
       console.log(res.data);
     })
-    .catch(error => {
-      console.log(error);
+    .catch(err => {
+      console.log(err);
     })
-    console.log(this.state)
+
+    console.log(document.cookie);
+    // userInfo();
   };
 
   handleLoginSubmit(e){
@@ -81,10 +83,15 @@ class signupForm extends Component {
     loginUser(this.state)
     .then(res => {
       console.log(res.data);
+      res.data.success === true ? document.cookie = `token=${res.data.token}` : alert("couldn't log in");
+    })
+    .then(cookie => {
+      userInfo(document.cookie);
     })
     .catch(err => {
       console.log(err);
     })
+
   }
 
   render(){
