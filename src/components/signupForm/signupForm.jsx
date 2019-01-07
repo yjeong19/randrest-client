@@ -89,7 +89,6 @@ class signupForm extends Component {
     console.log(e.target.id);
     loginUser(this.state)
     .then(res => {
-      console.log(res.data);
       Cookies.remove('token');
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
