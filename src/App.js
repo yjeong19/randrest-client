@@ -3,7 +3,7 @@ import Searchbar from './container/searchbar';
 import ResultsPage from './container/resultsPage';
 import SelectionPage from './container/selectionLandingPage';
 import Login from './components/signupForm';
-import { Route, BrowserRouter, Link, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter, Link, Redirect, withRouter } from 'react-router-dom';
 import './style.css';
 
 //testing
@@ -16,7 +16,7 @@ function PrivateRoute({ component: Component, ...rest}){
     <Route
       {...rest}
       render={props =>
-        Cookies.get('isAuth') == 'true' ? (
+        Cookies.get('isAuth') === 'true' ? (
           <Component {...props} />
         ) : (
           <Redirect
@@ -29,6 +29,19 @@ function PrivateRoute({ component: Component, ...rest}){
       )
     };
 
+    const AuthButton = withRouter(({ history }) => (
+      Cookies.get('isAuth') ? (
+        <p>
+          Welcome! <button onClick={() => {
+            Cookies.set('isAuth', false);
+            Cookies.set('token', '');
+          }}>Sign out</button>
+        </p>
+      ) : (
+        <p>You are not logged in.</p>
+      )
+    ))
+
 
 class App extends Component {
   render() {
@@ -36,6 +49,7 @@ class App extends Component {
       <BrowserRouter className='main_page'>
         <div className="App container main_page" >
           <li><Link to="/protected">Protected Page</Link></li>
+            <AuthButton />
             <Searchbar />
             {/* <Form /> */}
             <PrivateRoute path='/protected' component = {UserPage} />

@@ -10,9 +10,11 @@ const Cookies = require('js-cookie');
 
 class userPage extends Component {
   render(){
+    console.log(this.props);
     return(
       <div>
         <h1>Protected</h1>
+        <button>Log Out</button>
       </div>
     )
   }

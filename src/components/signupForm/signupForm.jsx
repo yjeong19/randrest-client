@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { registerUser, loginUser, userInfo } from '../../helpers/user_routes';
+import { Redirect } from 'react-router-dom';
 const Cookies = require('js-cookie');
 
 class signupForm extends Component {
@@ -10,6 +11,7 @@ class signupForm extends Component {
       password: '',
       password2: '',
       name: '',
+      redirectToReferer: false,
     }
     //bind events
     this.renderSignUp = this.renderSignUp.bind(this);
@@ -76,6 +78,7 @@ class signupForm extends Component {
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
+      this.setState({redirectToReferer: true});
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
@@ -93,6 +96,7 @@ class signupForm extends Component {
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
+      this.setState({redirectToReferer: true});
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
@@ -101,6 +105,9 @@ class signupForm extends Component {
   }
 
   render(){
+    if(this.redirectToReferer === true) {
+      return <Redirect to='/protected' />
+    }
     return(
       <div>
         <div>{this.renderLogin()}</div>
