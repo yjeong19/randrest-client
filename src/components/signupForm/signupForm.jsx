@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { registerUser, loginUser, userInfo } from '../../helpers/user_routes';
+const Cookies = require('js-cookie');
 
 class signupForm extends Component {
   constructor(props){
@@ -64,34 +65,40 @@ class signupForm extends Component {
     this.setState({[e.target.id] : e.target.value })
   }
 
+
+//refactor submit button later
   handleRegisterSubmit(e){
     e.preventDefault();
     registerUser(this.state)
     .then(res => {
       console.log(res.data);
+      Cookies.remove('token');
+      Cookies.remove('isAuth');
+      Cookies.set('token', res.data.token, {expires: 1});
+      Cookies.set('isAuth', res.data.success, {expires: 1});
     })
+    .then(userInfo(Cookies.get('token')))
     .catch(err => {
       console.log(err);
     })
-
-    console.log(document.cookie);
     // userInfo();
   };
 
   handleLoginSubmit(e){
     e.preventDefault();
+    console.log(e.target.id);
     loginUser(this.state)
     .then(res => {
       console.log(res.data);
-      res.data.success === true ? document.cookie = `token=${res.data.token}` : alert("couldn't log in");
+      Cookies.remove('token');
+      Cookies.remove('isAuth');
+      Cookies.set('token', res.data.token, {expires: 1});
+      Cookies.set('isAuth', res.data.success, {expires: 1});
     })
-    .then(cookie => {
-      userInfo(document.cookie);
-    })
+    .then(userInfo(Cookies.get('token')))
     .catch(err => {
       console.log(err);
     })
-
   }
 
   render(){
