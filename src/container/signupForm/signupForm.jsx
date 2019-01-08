@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { registerUser, loginUser, userInfo } from '../../helpers/user_routes';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { addAuth } from '../../redux/actions/addAuth';
 const Cookies = require('js-cookie');
+
 
 class signupForm extends Component {
   constructor(props){
@@ -20,6 +23,7 @@ class signupForm extends Component {
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   };
+
 
   renderLogin(){
     return(
@@ -97,6 +101,7 @@ class signupForm extends Component {
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
       this.setState({redirectToReferer: true});
+      this.props.addAuth(Cookies.get('isAuth'));
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
@@ -104,8 +109,12 @@ class signupForm extends Component {
     })
   }
 
+  componentDidUpdate(){
+    console.log(this.props.state.authReducer);
+  }
+
   render(){
-    if(this.redirectToReferer === true) {
+    if(this.props.isAuth == 'true') {
       return <Redirect to='/protected' />
     }
     return(
@@ -117,4 +126,18 @@ class signupForm extends Component {
   }
 };
 
-export default signupForm;
+const mapDispatchToProps = (dispatch) => ({
+  addAuth: (auth) => dispatch(addAuth(auth)),
+});
+
+const mapStateToProps = ((state, ownProps) => {
+  return {
+    state,
+    isAuth: state.authReducer.isAuth,
+  }
+})
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(signupForm);

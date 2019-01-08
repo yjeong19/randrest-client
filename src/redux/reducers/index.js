@@ -3,14 +3,14 @@ import { combineReducers } from 'redux';
 import searchResultsReducer from './searchResultsReducer';
 import commentsReducer from './commentsReducer';
 import likesReducer from './likesReducer';
-import sessionReducer from './sessionReducer';
+import authReducer from './authReducer';
 
 const rootReducer = combineReducers({
   // initialReducer,
   searchResultsReducer,
   commentsReducer,
   likesReducer,
-  sessionReducer,
+  authReducer
 });
 
 export default rootReducer;
