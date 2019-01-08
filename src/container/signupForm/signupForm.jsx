@@ -102,6 +102,7 @@ class signupForm extends Component {
       Cookies.set('isAuth', res.data.success, {expires: 1});
       this.setState({redirectToReferer: true});
       this.props.addAuth(Cookies.get('isAuth'));
+      // this.props.history.push('/protected');
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
@@ -110,7 +111,7 @@ class signupForm extends Component {
   }
 
   componentDidUpdate(){
-    console.log(this.props.state.authReducer);
+    console.log(this.props.isAuth);
   }
 
   render(){

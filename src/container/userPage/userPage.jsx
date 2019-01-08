@@ -20,22 +20,13 @@ class userPage extends Component {
   };
 
   componentDidUpdate(){
-    console.log(this.props.isAuth);
-  }
-
-  componentDidMount(){
-    console.log(this.props.isAuth);
-    console.log(typeof(Cookies.get('isAuth')))
-    this.setState({
-      isAuth: Cookies.get('isAuth'),
-    })
-    // console.log(this.state);
+    console.log(this.props);
   }
 
   AuthButton(){
     return(
       <div>{
-        this.props.isAuth == 'true' ? (
+        Cookies.get('isAuth') == 'true' ? (
           <p>
             Welcome! <button onClick={this.logoutUser}>Sign out</button>
           </p>
@@ -57,6 +48,9 @@ class userPage extends Component {
   }
 
   render(){
+    if(this.props.isAuth == 'false') {
+      return <Redirect to='/login' />
+    }
     console.log(this.props);
     return(
       <div>
