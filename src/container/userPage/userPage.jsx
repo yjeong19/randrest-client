@@ -26,7 +26,7 @@ class userPage extends Component {
   AuthButton(){
     return(
       <div>{
-        Cookies.get('isAuth') == 'true' ? (
+        this.props.isAuth == 'true' ? (
           <p>
             Welcome! <button onClick={this.logoutUser}>Sign out</button>
           </p>

@@ -9,6 +9,7 @@ import {
 } from '../../helpers/routes';
 import './style.css'
 import L from 'leaflet';
+import { Redirect } from 'react-router-dom';
 
 
 //route from resultspage
@@ -95,6 +96,7 @@ class selectionLandingPage extends Component {
     event.preventDefault();
     this.comment.id = this.props.state.selection.id;
     // console.log(this.comment);
+    if(this.props.isAuth == 'true'){
     createComment(this.comment)
     .then(res => {
       // console.log(res, 'line 117 ============================');
@@ -102,7 +104,12 @@ class selectionLandingPage extends Component {
     })
     .catch(err => {
       console.log(err);
-    })
+    })}else{
+        console.log('line 109');
+        console.log(this.props.isAuth);
+        // return <Redirect to='/login' />
+        alert('please log in');
+    }
   };
 
   renderComments(){
@@ -239,6 +246,7 @@ const mapStateToProps = ((state, ownProps) => {
     state: state.searchResultsReducer,
     comments: state.commentsReducer,
     likes: state.likesReducer,
+    isAuth: state.authReducer.isAuth,
   }
 })
 
