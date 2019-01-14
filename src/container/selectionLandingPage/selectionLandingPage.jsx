@@ -17,7 +17,7 @@ class selectionLandingPage extends Component {
   constructor(props){
     super(props);
 
-    this.comment = {
+    this.state = {
       restaurant_id: null,
       comment: null,
       user: null,
@@ -39,6 +39,12 @@ class selectionLandingPage extends Component {
     this.renderLeafletMap();
     this.renderSelectedInfo();
     this.getCommentsAndLikes();
+    console.log(this.props.auth);
+    this.setState({
+      user: this.props.auth.user,
+      user_id: this.props.auth.user_id,
+      restaurant_id: this.props.state.selection.id,
+    })
   }
 
 
@@ -80,25 +86,26 @@ class selectionLandingPage extends Component {
     // console.log(this.);
     switch(e.target.id){
       case 'user':
-        this.comment.user = e.target.value;
+        this.setState({
+          user: e.target.value,
+        })
         break;
 
       case 'comment':
-        this.comment.comment = e.target.value;
+        this.setState({
+          comment: e.target.value,
+        })
         break;
 
       default:
         return;
     }
-    // this.comment.comment = e.target.value;
   };
 
   handleSubmit(event){
     event.preventDefault();
-    this.comment.restaurant_id = this.props.state.selection.id;
-    console.log(this.comment);
     if(this.props.isAuth == 'true'){
-    createComment(this.comment)
+    createComment(this.state)
     .then(res => {
       console.log(res, 'line 117 ============================');
       this.props.addNewComment(res.data);
@@ -117,10 +124,10 @@ class selectionLandingPage extends Component {
     return(
       <div>
         {this.props.comments.map((comment, i)=>{
-          // console.log('line 119: ', comment)
+          console.log('line 119: ', comment)
           return(
             <div className = 'commentCard row'>
-              <h1 className='comment_user col-lg-12'>{comment.user}</h1>
+              <h1 className='comment_user col-lg-12'>{comment.username}</h1>
               <img className='user_img col-lg-2' alt='user profile pic' src='#' width='20px' height = '20px' />
               <div className='comment_info col-lg-6'>
                 <p className='user_comment'>{comment.comment}</p>
@@ -242,6 +249,7 @@ const mapStateToProps = ((state, ownProps) => {
     comments: state.commentsReducer,
     likes: state.likesReducer,
     isAuth: state.authReducer.isAuth,
+    auth: state.authReducer,
   }
 })
 

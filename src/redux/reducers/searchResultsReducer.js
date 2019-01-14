@@ -8,7 +8,9 @@ const initialState = {
   search: null,
   random: null,
   state: null,
-  selection: null,
+  selection: {
+    id: null
+  },
 };
 
 const searchResultsReducer = ((state = initialState, action) => {
