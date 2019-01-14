@@ -32,11 +32,11 @@ export const getComments = (params) => {
 };
 
 //create comment
-export const createComment = (comment) => {
+export const createComment = (params) => {
   // console.log('add comment');
-  // console.log(comment);
-  return axios.put(`${url}/restaurant/comment`, {
-    params: comment,
+  console.log(params);
+  return axios.post(`${url}/comments`, {
+    params
   })
 };
 

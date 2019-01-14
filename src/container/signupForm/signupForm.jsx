@@ -83,6 +83,7 @@ class signupForm extends Component {
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
       this.setState({redirectToReferer: true});
+      this.props.addAuth(Cookies.get('isAuth'), Cookies.get('token'));
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
@@ -96,12 +97,13 @@ class signupForm extends Component {
     console.log(e.target.id);
     loginUser(this.state)
     .then(res => {
+      console.log(res.data);
       Cookies.remove('token');
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
       this.setState({redirectToReferer: true});
-      this.props.addAuth(Cookies.get('isAuth'));
+      this.props.addAuth(Cookies.get('isAuth'), Cookies.get('token'));
       // this.props.history.push('/protected');
     })
     .then(userInfo(Cookies.get('token')))
@@ -128,7 +130,7 @@ class signupForm extends Component {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addAuth: (auth) => dispatch(addAuth(auth)),
+  addAuth: (auth, token) => dispatch(addAuth(auth, token)),
 });
 
 const mapStateToProps = ((state, ownProps) => {

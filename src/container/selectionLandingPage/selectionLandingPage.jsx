@@ -18,7 +18,7 @@ class selectionLandingPage extends Component {
     super(props);
 
     this.comment = {
-      id: null,
+      restaurant_id: null,
       comment: null,
       user: null
     };
@@ -94,8 +94,8 @@ class selectionLandingPage extends Component {
 
   handleSubmit(event){
     event.preventDefault();
-    this.comment.id = this.props.state.selection.id;
-    // console.log(this.comment);
+    this.comment.restaurant_id = this.props.state.selection.id;
+    console.log(this.comment);
     if(this.props.isAuth == 'true'){
     createComment(this.comment)
     .then(res => {
@@ -177,13 +177,6 @@ class selectionLandingPage extends Component {
     }).addTo(map);
     //L.marker puts mark on location
     L.marker([latitude === undefined ? 0 : latitude, longitude === undefined ? 0 : longitude]).addTo(map);
-
-    // return(
-    //   <div id='mapid'>
-    //     <h1>MAP CONTAINER</h1>
-    //
-    //   </div>
-    // )
   }
 
 

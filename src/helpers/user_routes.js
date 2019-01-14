@@ -13,7 +13,7 @@ export const registerUser = (userInfo) => {
   // console.log(userInfo);
   return axios.post(`${url}/users/register`, {
     email: userInfo.email,
-    name: userInfo.name,
+    username: userInfo.name,
     password: userInfo.password,
     password2: userInfo.password2,
   })
