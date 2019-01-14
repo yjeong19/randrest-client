@@ -2,11 +2,11 @@ import {
   IS_AUTH,
 } from '../constants';
 
-const addAuth = (auth, token) => {
+const addAuth = (payload) => {
+  console.log('add Auth', payload);
   return {
     type: IS_AUTH,
-    auth,
-    token
+    payload
   }
 };
 

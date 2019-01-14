@@ -15,6 +15,7 @@ class signupForm extends Component {
       password2: '',
       name: '',
       redirectToReferer: false,
+      payload: {},
     }
     //bind events
     this.renderSignUp = this.renderSignUp.bind(this);
@@ -77,7 +78,7 @@ class signupForm extends Component {
     e.preventDefault();
     registerUser(this.state)
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
       Cookies.remove('token');
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
@@ -97,13 +98,21 @@ class signupForm extends Component {
     console.log(e.target.id);
     loginUser(this.state)
     .then(res => {
-      console.log(res.data);
       Cookies.remove('token');
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
       this.setState({redirectToReferer: true});
-      this.props.addAuth(Cookies.get('isAuth'), Cookies.get('token'));
+      this.setState({
+        payload: {
+          token: Cookies.get('token'),
+          auth: Cookies.get('isAuth'),
+          username: res.data.payload.name,
+          user_id: res.data.payload.id,
+        }
+      });
+      console.log('line 115: ', this.state)
+      this.props.addAuth(this.state.payload);
       // this.props.history.push('/protected');
     })
     .then(userInfo(Cookies.get('token')))
@@ -130,7 +139,7 @@ class signupForm extends Component {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  addAuth: (auth, token) => dispatch(addAuth(auth, token)),
+  addAuth: (payload) => dispatch(addAuth(payload)),
 });
 
 const mapStateToProps = ((state, ownProps) => {

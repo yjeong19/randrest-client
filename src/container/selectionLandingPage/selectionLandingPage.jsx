@@ -20,7 +20,8 @@ class selectionLandingPage extends Component {
     this.comment = {
       restaurant_id: null,
       comment: null,
-      user: null
+      user: null,
+      user_id: null,
     };
 
     this.location = {};
@@ -99,7 +100,7 @@ class selectionLandingPage extends Component {
     if(this.props.isAuth == 'true'){
     createComment(this.comment)
     .then(res => {
-      // console.log(res, 'line 117 ============================');
+      console.log(res, 'line 117 ============================');
       this.props.addNewComment(res.data);
     })
     .catch(err => {
@@ -116,6 +117,7 @@ class selectionLandingPage extends Component {
     return(
       <div>
         {this.props.comments.map((comment, i)=>{
+          // console.log('line 119: ', comment)
           return(
             <div className = 'commentCard row'>
               <h1 className='comment_user col-lg-12'>{comment.user}</h1>

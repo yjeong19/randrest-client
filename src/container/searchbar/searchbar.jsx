@@ -74,8 +74,10 @@ class searchbar extends Component {
   async handleSubmit(e){
     //searchType selects weather it is search or random
     const searchType = e.target.id === 'submit' ? 'search' : 'random';
+    console.log('line 77 searchbar: ', searchType, this.searchbarInput);
     await fetchAPI(searchType, this.searchbarInput)
     .then((response) => {
+      console.log('line 80: ', response);
       searchType === 'search' ? this.props.addSearchResults(response.data) : searchType === 'random' ? this.props.addRandomRestaurant(response.data) : console.log('err');
       // this.props.addSearchResults(response.data);
     })

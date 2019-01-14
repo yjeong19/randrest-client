@@ -44,7 +44,6 @@ export const createComment = (params) => {
 //is this create post method even required anymore? checkPost below creates new field if object doesnt exist.
 export const createPost = (data) => {
   // console.log('create post activated'
-  // console.log(data);
   return axios.post(`${url}/restaurant`,{
     params: data
   })
