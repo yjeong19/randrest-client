@@ -58,5 +58,19 @@ export const checkPost = (data) => {
   })
 };
 
+export const getUserComments = (params) => {
+  console.log(params);
+  return axios.get(`${url}/comments`, {
+    params: {
+      user_id: params
+    }
+  })
+  .then(res => {
+    console.log(res)
+  })
+  .catch(err => {
+    console.log(err);
+  })
+};
 // export default (createPost, checkPost);
 //

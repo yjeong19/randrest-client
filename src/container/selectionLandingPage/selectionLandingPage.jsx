@@ -84,22 +84,9 @@ class selectionLandingPage extends Component {
 
   handleCommentInput(e){
     // console.log(this.);
-    switch(e.target.id){
-      case 'user':
-        this.setState({
-          user: e.target.value,
-        })
-        break;
-
-      case 'comment':
-        this.setState({
-          comment: e.target.value,
-        })
-        break;
-
-      default:
-        return;
-    }
+    this.setState({
+      comment: e.target.value,
+    })
   };
 
   handleSubmit(event){

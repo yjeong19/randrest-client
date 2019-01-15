@@ -8,6 +8,7 @@ import {
   withRouter
 } from 'react-router-dom';
 import { addAuth } from '../../redux/actions/addAuth';
+import { getUserComments } from '../../helpers/routes';
 const Cookies = require('js-cookie');
 
 class userPage extends Component {
@@ -23,10 +24,20 @@ class userPage extends Component {
     console.log(this.props);
   }
 
+  componentDidMount(){
+    getUserComments(this.props.auth.user_id)
+    // .then(resp => {
+    //   console.log(resp);
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
+  }
+
   AuthButton(){
     return(
       <div>{
-        this.props.isAuth == 'true' ? (
+        this.props.auth.isAuth == 'true' ? (
           <p>
             Welcome! <button onClick={this.logoutUser}>Sign out</button>
           </p>
@@ -48,10 +59,9 @@ class userPage extends Component {
   }
 
   render(){
-    if(this.props.isAuth == 'false') {
+    if(this.props.auth.isAuth == 'false') {
       return <Redirect to='/login' />
     }
-    console.log(this.props);
     return(
       <div>
         <h1>Protected</h1>
@@ -67,7 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = ((state, ownProps) => {
   return {
-    isAuth: state.authReducer.isAuth,
+    auth: state.authReducer,
   }
 })
 
