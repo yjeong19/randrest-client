@@ -7,7 +7,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import { addAuth } from '../../redux/actions/addAuth';
+import { addAuth, addUserPageComment } from '../../redux/actions';
 import { getUserComments } from '../../helpers/routes';
 const Cookies = require('js-cookie');
 
@@ -18,6 +18,7 @@ class userPage extends Component {
     //bind events
     this.AuthButton = this.AuthButton.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
+    this.renderComments = this.renderComments.bind(this);
   };
 
   componentDidUpdate(){
@@ -25,13 +26,12 @@ class userPage extends Component {
   }
 
   componentDidMount(){
-    getUserComments(this.props.auth.user_id)
-    // .then(resp => {
-    //   console.log(resp);
-    // })
-    // .catch(err => {
-    //   console.log(err);
-    // })
+    this.addComments();
+  }
+
+  async addComments(){
+    let comments = await getUserComments(this.props.auth.user_id);
+    this.props.addUserPageComment(comments);
   }
 
   AuthButton(){
@@ -45,6 +45,30 @@ class userPage extends Component {
           <p>You are not logged in.</p>
         )
       }</div>
+    )
+  };
+
+  renderComments(){
+    return(
+      <div>{this.props.auth.isAuth == 'true' && this.props.userComments ? (
+        <div>
+        {this.props.userComments.map((comment, i)=>{
+          console.log('line 119: ', comment)
+          return(
+            <div className = 'commentCard row'>
+              <h1 className='comment_user col-lg-12'>{comment.restaurant_name}</h1>
+              <div className='comment_info col-lg-6'>
+                <p className='user_comment'>{comment.comment}</p>
+                {/* temp using current date */}
+                <p className='comment_date'>{Date.now().toString()}</p>
+              </div>
+            </div>
+          )}
+          )
+        }</div>) :
+        null
+      }
+      </div>
     )
   };
 
@@ -66,6 +90,7 @@ class userPage extends Component {
       <div>
         <h1>Protected</h1>
         <div>{this.AuthButton()}</div>
+        <div>{this.renderComments()}</div>
       </div>
     )
   }
@@ -73,11 +98,14 @@ class userPage extends Component {
 
 const mapDispatchToProps = (dispatch) => ({
   addAuth: (auth) => dispatch(addAuth(auth)),
+  addUserPageComment: (payload) => dispatch(addUserPageComment(payload)),
 });
 
 const mapStateToProps = ((state, ownProps) => {
+  // console.log(state);
   return {
     auth: state.authReducer,
+    userComments: state.userPageReducer.comments,
   }
 })
 

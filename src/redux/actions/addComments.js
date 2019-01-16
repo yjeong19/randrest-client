@@ -1,6 +1,7 @@
 import {
   ADD_COMMENTS,
   ADD_NEW_COMMENT,
+  ADD_USERPAGE_COMMENTS,
 } from '../constants';
 
 
@@ -18,7 +19,15 @@ const addNewComment = (comment) => {
   }
 };
 
+const addUserPageComment = (payload) => {
+  return {
+    type: ADD_USERPAGE_COMMENTS,
+    payload,
+  }
+}
+
 export {
   addComments,
-  addNewComment
+  addNewComment,
+  addUserPageComment,
 };

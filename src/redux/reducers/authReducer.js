@@ -9,7 +9,7 @@ const initialState = {
   user_id: '',
 };
 
-const authReducer = (state=initialState, action, payload) => {
+const authReducer = (state=initialState, action) => {
   switch(action.type){
     case IS_AUTH:
       console.log(action)

@@ -8,3 +8,4 @@ export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const IS_AUTH = 'IS_AUTH';
+export const ADD_USERPAGE_COMMENTS = 'ADD_USERPAGE_COMMENTS';

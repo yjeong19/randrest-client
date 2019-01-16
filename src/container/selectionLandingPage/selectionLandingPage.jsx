@@ -18,7 +18,9 @@ class selectionLandingPage extends Component {
     super(props);
 
     this.state = {
+      restaurant_name: null,
       restaurant_id: null,
+      image_url: null,
       comment: null,
       user: null,
       user_id: null,
@@ -44,11 +46,9 @@ class selectionLandingPage extends Component {
       user: this.props.auth.user,
       user_id: this.props.auth.user_id,
       restaurant_id: this.props.state.selection.id,
+      image_url: this.props.state.selection.image_url,
+      restaurant_name: this.props.state.selection.name,
     })
-  }
-
-
-  componentDidUpdate(){
   }
 
   updateLikes(e){
@@ -151,7 +151,6 @@ class selectionLandingPage extends Component {
     return(
         <div className='comment_form'>
           {/* temporarily name, add auth later */}
-          <input className = 'form-control comment_name' id='user' placeholder = 'user' onChange = {this.handleCommentInput}/>
           <textarea className = 'form-control comment' id='comment' placeholder = 'comment' onChange = {this.handleCommentInput}/>
           <button onClick = {this.handleSubmit}>submit</button>
         </div>
@@ -163,7 +162,7 @@ class selectionLandingPage extends Component {
     let coord = this.props.state.selection !== null ? this.props.state.selection.coordinates : '';
     let { latitude, longitude } = coord;
     // let long = coor.longitude !== null ? coor.longitude: 0;
-
+    if(latitude){
     let map = L.map('mapid', {
     center: [latitude === undefined ? 0 : latitude, longitude === undefined ? 0 : longitude],
     zoom: 20
@@ -173,7 +172,10 @@ class selectionLandingPage extends Component {
     }).addTo(map);
     //L.marker puts mark on location
     L.marker([latitude === undefined ? 0 : latitude, longitude === undefined ? 0 : longitude]).addTo(map);
+  } else {
+    return null;
   }
+}
 
 
   renderInfoSection(){
@@ -184,7 +186,7 @@ class selectionLandingPage extends Component {
         <img src = {info !== '' ? info.image_url : ''} alt='restaurant image' className='rest_img col-md-4 col-xs-6' width = '200px' height = '200px'/>
         <div className='landing_info_section col-md-4 col-sm-6'>
           {/* POSSIBLY ADD MAPS FOR REST OF ROW */}
-          <p className='rest_address'>{info !== '' ?
+          <p className='rest_address'>{info.location !== undefined ?
             `${info.location.address1} \n ${info.location.city}, ${info.location.state} ${info.location.zip_code}` : ''}</p>
           <p className='yelp_price'>{`Yelp Price: ${info.price === undefined ? 'No Rating' : info.price}`}</p>
           <p>{`Yelp Rating: ${info.rating === undefined ? 'No Rating' : info.rating}`}</p>

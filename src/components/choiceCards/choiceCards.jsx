@@ -33,7 +33,7 @@ class choiceCards extends Component {
           <div class="card-body col-md-8 col-sm-6 col-xs-12">
             <h5 class="col-md-8 col-xs-12 card_title">{this.props.data.name}</h5>
             <div className='col-md-8 col-xs-12 card_info' >
-              <p class="card_info">{`Address: ${this.props.data.location.address1} ${this.props.data.location.city}, ${this.props.data.location.state} ${this.props.data.location.zip_code}`}</p>
+              <p class="card_info">{this.props.data.location.address1 ? `Address: ${this.props.data.location.address1} ${this.props.data.location.city}, ${this.props.data.location.state} ${this.props.data.location.zip_code}` : 'No Address'}</p>
               <p class="price">{`Price: ${this.props.data.price}`}</p>
               <p class="rating">{`Yelp rating: ${this.props.data.rating}`}</p>
             </div>

@@ -66,7 +66,8 @@ export const getUserComments = (params) => {
     }
   })
   .then(res => {
-    console.log(res)
+    console.log(res.data);
+    return res.data;
   })
   .catch(err => {
     console.log(err);

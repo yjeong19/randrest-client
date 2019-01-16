@@ -4,13 +4,15 @@ import searchResultsReducer from './searchResultsReducer';
 import commentsReducer from './commentsReducer';
 import likesReducer from './likesReducer';
 import authReducer from './authReducer';
+import userPageReducer from './userPageReducer';
 
 const rootReducer = combineReducers({
   // initialReducer,
   searchResultsReducer,
   commentsReducer,
   likesReducer,
-  authReducer
+  authReducer,
+  userPageReducer,
 });
 
 export default rootReducer;
