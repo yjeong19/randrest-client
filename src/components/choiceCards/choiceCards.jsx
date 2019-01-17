@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './style.css';
+import { checkPost } from '../../helpers/routes.jsx'
 
 class choiceCards extends Component {
   constructor(props){
@@ -10,7 +11,7 @@ class choiceCards extends Component {
   }
 
   componentDidMount(){
-    // console.log(this.props);
+
   }
 
   //handle user selection then route to landing page
@@ -19,11 +20,6 @@ class choiceCards extends Component {
     this.props.addUserSelection(this.props.data);
   }
 
-  // async renderYelpStars(){
-  //   let rating = await this.props.data.rating;
-  //
-  //
-  // }
 
   render(){
     return(

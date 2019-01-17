@@ -13,6 +13,18 @@ const axios = require('axios');
 //dev server
 const url = 'http://localhost:8081';
 
+//get single restaurant info from own db
+export const getOneRestaurant = (restaurant_id) => {
+  console.log(restaurant_id);
+  return axios.get(`${url}/restaurant`, {
+    params: {
+      restaurant_id
+    }
+  })
+  // .then(data =>{ console.log(data) })
+  // .catch(err => { console.log(err) });
+}
+
 //likes/dislikes
 export const postLikes = (id, like) => {
   // console.log('getting likes, or posting',id, like);
@@ -52,7 +64,8 @@ export const createPost = (data) => {
 //put method, does it create new one if it exists?
 //this method creates a new restaurant model if it dne, else returns existing i believe.
 export const checkPost = (data) => {
-  // console.log("checkpost activated")
+  console.log("checkpost activated")
+  console.log(data);
   return axios.put(`${url}/restaurant/selected`, {
     params: data
   })

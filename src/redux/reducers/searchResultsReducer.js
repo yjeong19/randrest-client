@@ -33,12 +33,12 @@ const searchResultsReducer = ((state = initialState, action) => {
       break;
 
     case ADD_USER_SELECTION:
-      // console.log(action.payload);
+      console.log(action.payload);
       return {
         ...state,
         selection: action.payload,
       }
-      break
+      break;
 
     default:
       return state;

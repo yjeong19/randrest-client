@@ -7,8 +7,9 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import { addAuth, addUserPageComment } from '../../redux/actions';
-import { getUserComments } from '../../helpers/routes';
+import { addAuth, addUserPageComment, addUserSelection } from '../../redux/actions';
+import { getUserComments, getOneRestaurant } from '../../helpers/routes';
+import './style.css';
 const Cookies = require('js-cookie');
 
 class userPage extends Component {
@@ -19,6 +20,7 @@ class userPage extends Component {
     this.AuthButton = this.AuthButton.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
     this.renderComments = this.renderComments.bind(this);
+    this.linkToRest = this.linkToRest.bind(this);
   };
 
   componentDidUpdate(){
@@ -32,6 +34,17 @@ class userPage extends Component {
   async addComments(){
     let comments = await getUserComments(this.props.auth.user_id);
     this.props.addUserPageComment(comments);
+  };
+
+  linkToRest(e){
+    // event.preventDefault();
+    console.log(e.target.id);
+    getOneRestaurant(e.target.id)
+    .then(data => {
+      this.props.addUserSelection(data.data)
+      this.props.history.push('/restaurant_landing');
+     })
+    .catch(err => { console.log(err) });
   }
 
   AuthButton(){
@@ -55,8 +68,9 @@ class userPage extends Component {
         {this.props.userComments.map((comment, i)=>{
           console.log('line 119: ', comment)
           return(
-            <div className = 'commentCard row'>
-              <h1 className='comment_user col-lg-12'>{comment.restaurant_name}</h1>
+            <div className ={`commentCard row`} onClick={this.linkToRest}>
+              <h1 className={`comment_user col-lg-12`} id={comment.restaurant_id} >{comment.restaurant_name}</h1>
+              <img className='user_img col-lg-2' id='img_url' alt='user profile pic' src={comment.image_url} width='20px' height = '20px' />
               <div className='comment_info col-lg-6'>
                 <p className='user_comment'>{comment.comment}</p>
                 {/* temp using current date */}
@@ -90,7 +104,9 @@ class userPage extends Component {
       <div>
         <h1>Protected</h1>
         <div>{this.AuthButton()}</div>
-        <div>{this.renderComments()}</div>
+        <Link to = {'/restaurant_landing'}>
+          <div>{this.renderComments()}</div>
+        </Link>
       </div>
     )
   }
@@ -99,6 +115,7 @@ class userPage extends Component {
 const mapDispatchToProps = (dispatch) => ({
   addAuth: (auth) => dispatch(addAuth(auth)),
   addUserPageComment: (payload) => dispatch(addUserPageComment(payload)),
+  addUserSelection: (payload) => dispatch(addUserSelection(payload)),
 });
 
 const mapStateToProps = ((state, ownProps) => {
@@ -106,6 +123,7 @@ const mapStateToProps = ((state, ownProps) => {
   return {
     auth: state.authReducer,
     userComments: state.userPageReducer.comments,
+    selection: state.searchResultsReducer,
   }
 })
 

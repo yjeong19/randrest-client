@@ -40,7 +40,7 @@ class App extends Component {
             {/* <Form /> */}
             <PrivateRoute exact path='/protected' component = {UserPage} state={this.props.isAuth}/>
             <Route exact path = '/results' component = {ResultsPage} />
-            <Route path = '/restaurant_landing' component = {SelectionPage} />
+            <Route  path = '/restaurant_landing' component = {SelectionPage} />
             <Route exact path = '/login' component = {Login} />
         </div>
       </BrowserRouter>
