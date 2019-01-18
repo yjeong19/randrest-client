@@ -7,6 +7,9 @@ import { Route, BrowserRouter, Link, Redirect, withRouter } from 'react-router-d
 import './style.css';
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 import { connect } from 'react-redux';
+import Navbar from './components/navbar';
+import { addAuth } from './redux/actions';
+import { userInfo } from './helpers/user_routes';
 
 //testing
 import UserPage from './container/userPage';
@@ -24,18 +27,39 @@ class App extends Component {
   constructor(props){
     super(props);
 
+    this.state = {
+      isAuth: '',
+      token: '',
+      auth: '',
+    }
+
   }
-  componentDidMount(){
-    console.log(this.props);
+  async componentDidMount(){
+    await this.setState({
+      isAuth: Cookies.get('isAuth'),
+      token: Cookies.get('token'),
+    });
+    console.log(this.state);
+    userInfo(this.state.token)
+    .then(data => {
+      console.log(data);
+      this.setState({
+        user_id: data.data.id,
+        username: data.data.username,
+        auth: Cookies.get('isAuth'),
+      })
+      console.log(this.state);
+      this.props.addAuth(this.state)
+    })
+
   }
 
   render() {
     return (
       <BrowserRouter className='main_page'>
         <div className="App container main_page" >
-            <li><Link to="/protected">Protected Page</Link></li>
-            <li><Link to="/login">login</Link></li>
             {/* <AuthButton /> */}
+            <Navbar state={this.props.isAuth}/>
             <Searchbar />
             {/* <Form /> */}
             <PrivateRoute exact path='/protected' component = {UserPage} state={this.props.isAuth}/>
@@ -52,11 +76,17 @@ class App extends Component {
 const mapStateToProps = ((state) => {
   return {
     isAuth: state.authReducer.isAuth,
+    token: state.authReducer.token,
   }
-})
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addAuth: (auth) => dispatch(addAuth(auth)),
+});
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(App);
 
 

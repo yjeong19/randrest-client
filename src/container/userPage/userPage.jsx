@@ -20,7 +20,7 @@ class userPage extends Component {
     this.AuthButton = this.AuthButton.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
     this.renderComments = this.renderComments.bind(this);
-    this.linkToRest = this.linkToRest.bind(this);
+    // this.linkToRest = this.linkToRest.bind(this);
   };
 
   componentDidUpdate(){
@@ -36,16 +36,16 @@ class userPage extends Component {
     this.props.addUserPageComment(comments);
   };
 
-  linkToRest(e){
-    // event.preventDefault();
-    console.log(e.target.id);
-    getOneRestaurant(e.target.id)
-    .then(data => {
-      this.props.addUserSelection(data.data)
-      this.props.history.push('/restaurant_landing');
-     })
-    .catch(err => { console.log(err) });
-  }
+  // linkToRest(e){
+  //   // event.preventDefault();
+  //   console.log(e.target.id);
+  //   getOneRestaurant(e.target.id)
+  //   .then(data => {
+  //     this.props.addUserSelection(data.data)
+  //     this.props.history.push('/restaurant_landing');
+  //    })
+  //   .catch(err => { console.log(err) });
+  // }
 
   AuthButton(){
     return(
@@ -66,7 +66,7 @@ class userPage extends Component {
       <div>{this.props.auth.isAuth == 'true' && this.props.userComments ? (
         <div>
         {this.props.userComments.map((comment, i)=>{
-          console.log('line 119: ', comment)
+          // console.log('line 119: ', comment)
           return(
             <div className ={`commentCard row`}>
               <h1 className={`comment_user col-lg-12`} id={comment.restaurant_id} >{comment.restaurant_name}</h1>
@@ -104,9 +104,9 @@ class userPage extends Component {
       <div>
         <h1>Protected</h1>
         <div>{this.AuthButton()}</div>
-        <Link to = {'/restaurant_landing'}>
+        {/* <Link to = {'/restaurant_landing'}> */}
           <div>{this.renderComments()}</div>
-        </Link>
+        {/* </Link> */}
       </div>
     )
   }
