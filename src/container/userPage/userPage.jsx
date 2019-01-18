@@ -68,7 +68,7 @@ class userPage extends Component {
         {this.props.userComments.map((comment, i)=>{
           console.log('line 119: ', comment)
           return(
-            <div className ={`commentCard row`} onClick={this.linkToRest}>
+            <div className ={`commentCard row`}>
               <h1 className={`comment_user col-lg-12`} id={comment.restaurant_id} >{comment.restaurant_name}</h1>
               <img className='user_img col-lg-2' id='img_url' alt='user profile pic' src={comment.image_url} width='20px' height = '20px' />
               <div className='comment_info col-lg-6'>

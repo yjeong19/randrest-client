@@ -157,9 +157,15 @@ class selectionLandingPage extends Component {
     );
   };
 
-  renderLeafletMap(){
+  async renderLeafletMap(){
     // console.log(this.props.state.selection);
-    let coord = this.props.state.selection !== null ? this.props.state.selection.coordinates : '';
+    let coord = { latitude: 0, longitude: 0}
+    const map_data = await this.props.state.selection;
+    // coord = await this.props.state.selection !== null ? this.props.state.selection.coordinates : null;
+    if(map_data.coordinates){
+      coord = map_data.coordinates;
+    }
+    console.log(coord);
     let { latitude, longitude } = coord;
     // let long = coor.longitude !== null ? coor.longitude: 0;
     if(latitude){
@@ -173,7 +179,9 @@ class selectionLandingPage extends Component {
     //L.marker puts mark on location
     L.marker([latitude === undefined ? 0 : latitude, longitude === undefined ? 0 : longitude]).addTo(map);
   } else {
-    return null;
+    latitude = null;
+    longitude = null;
+    return
   }
 }
 
