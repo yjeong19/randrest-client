@@ -15,7 +15,7 @@ class searchbar extends Component {
       term: '',
       location: '',
       categories: 'restaurants',
-      price: null,
+      price: 1,
     };
 
     //fix toggle active later

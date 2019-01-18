@@ -3,7 +3,9 @@ import { registerUser, loginUser, userInfo } from '../../helpers/user_routes';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { addAuth } from '../../redux/actions/addAuth';
+import './style.css';
 const Cookies = require('js-cookie');
+
 
 
 class signupForm extends Component {
@@ -145,7 +147,7 @@ class signupForm extends Component {
     return(
       <div>
         {this.state.reg_or_login == 'login' ? <div>{this.renderLogin()}</div> : <div>{this.renderSignUp()}</div>}
-        {this.state.reg_or_login == 'login' ? <p>Don't have an acccount? <span onClick={this.handleRegister}>Click Here to make one</span></p> : <p>Already have an acccount? <span onClick={this.handleRegister}>Click Here to sign in</span></p>}
+        {this.state.reg_or_login == 'login' ? <p>Don't have an acccount? <span className='log_or_reg' onClick={this.handleRegister}>Click Here to make one</span></p> : <p>Already have an acccount? <span className='log_or_reg' onClick={this.handleRegister}>Click Here to sign in</span></p>}
       </div>
     )
   }
