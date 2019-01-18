@@ -16,6 +16,7 @@ class signupForm extends Component {
       name: '',
       redirectToReferer: false,
       payload: {},
+      reg_or_login: 'login',
     }
     //bind events
     this.renderSignUp = this.renderSignUp.bind(this);
@@ -23,6 +24,7 @@ class signupForm extends Component {
     this.handleInput = this.handleInput.bind(this);
     this.handleRegisterSubmit = this.handleRegisterSubmit.bind(this);
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   };
 
 
@@ -125,14 +127,25 @@ class signupForm extends Component {
     console.log(this.props.isAuth);
   }
 
+  handleRegister(){
+    if(this.state.reg_or_login == 'login'){
+      this.setState({
+        reg_or_login: 'register',
+      })}else{
+      this.setState({
+        reg_or_login: 'login'
+      })
+    }
+  }
+
   render(){
     if(this.props.isAuth == 'true') {
       return <Redirect to='/protected' />
     }
     return(
       <div>
-        <div>{this.renderLogin()}</div>
-        <div>{this.renderSignUp()}</div>
+        {this.state.reg_or_login == 'login' ? <div>{this.renderLogin()}</div> : <div>{this.renderSignUp()}</div>}
+        {this.state.reg_or_login == 'login' ? <p>Don't have an acccount? <span onClick={this.handleRegister}>Click Here to make one</span></p> : <p>Already have an acccount? <span onClick={this.handleRegister}>Click Here to sign in</span></p>}
       </div>
     )
   }
