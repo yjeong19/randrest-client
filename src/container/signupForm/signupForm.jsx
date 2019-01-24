@@ -82,13 +82,21 @@ class signupForm extends Component {
     e.preventDefault();
     registerUser(this.state)
     .then(res => {
-      // console.log(res.data);
+      console.log(res.data);
       Cookies.remove('token');
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
       Cookies.set('isAuth', res.data.success, {expires: 1});
       this.setState({redirectToReferer: true});
-      this.props.addAuth(Cookies.get('isAuth'), Cookies.get('token'));
+      this.setState({
+        payload: {
+          token: Cookies.get('token'),
+          auth: Cookies.get('isAuth'),
+          username: res.data.payload.name,
+          user_id: res.data.payload.id,
+        }
+      });
+      this.props.addAuth(this.state.payload)
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {

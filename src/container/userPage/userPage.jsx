@@ -28,6 +28,7 @@ class userPage extends Component {
   }
 
   componentDidMount(){
+    console.log('line 31 userpage: ', this.props);
     this.addComments();
   }
 
@@ -61,6 +62,8 @@ class userPage extends Component {
     )
   };
 
+
+
   renderComments(){
     return(
       <div>{this.props.auth.isAuth == 'true' && this.props.userComments ? (
@@ -74,6 +77,7 @@ class userPage extends Component {
               <div className='comment_info col-lg-6'>
                 <p className='user_comment'>{comment.comment}</p>
                 {/* temp using current date */}
+                <button id='delete_button'>Delete</button>
                 <p className='comment_date'>{Date.now().toString()}</p>
               </div>
             </div>
@@ -102,7 +106,7 @@ class userPage extends Component {
     }
     return(
       <div>
-        <h1>Protected</h1>
+        <h1>{this.props.auth.user ? this.props.auth.user: null}</h1>
         <div>{this.AuthButton()}</div>
         {/* <Link to = {'/restaurant_landing'}> */}
           <div>{this.renderComments()}</div>

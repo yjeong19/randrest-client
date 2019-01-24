@@ -8,10 +8,10 @@ const axios = require('axios');
 // -- posting comments,
 // -- like/dislike,
 // -- percentage of likes,
-const url = 'https://randrest-server.herokuapp.com'
+// const url = 'https://randrest-server.herokuapp.com'
 
 //dev server
-// const url = 'http://localhost:8081';
+const url = 'http://localhost:8081';
 
 //get single restaurant info from own db
 export const getOneRestaurant = (restaurant_id) => {
@@ -48,6 +48,15 @@ export const createComment = (params) => {
   // console.log('add comment');
   console.log(params);
   return axios.post(`${url}/comments`, {
+    params
+  })
+};
+
+//delete comments:
+//need to delete from all comments, user and restaurant;
+export const deleteComment = (params) => {
+  console.log(params);
+  return axios.delete(`${url}/comments`, {
     params
   })
 };

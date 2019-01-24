@@ -1,5 +1,6 @@
 const axios = require('axios');
-const url = 'https://randrest-server.herokuapp.com'
+// const url = 'https://randrest-server.herokuapp.com'
+const url = 'http://localhost:8081';
 
 const fetchAPI = (searchType, searchbarInput) => {
   console.log(searchType, searchbarInput);
