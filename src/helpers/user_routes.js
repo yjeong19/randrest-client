@@ -1,10 +1,10 @@
 const axios = require('axios');
 
 //dep server
-// const url = 'https://randrest-server.herokuapp.com';
+const url = 'https://randrest-server.herokuapp.com';
 
 // dev server
-const url = 'http://localhost:8081';
+// const url = 'http://localhost:8081';
 
 
 export const registerUser = (userInfo) => {
