@@ -39,7 +39,6 @@ class App extends Component {
       isAuth: Cookies.get('isAuth'),
       token: Cookies.get('token'),
     });
-    console.log(this.state);
     userInfo(this.state.token)
     .then(data => {
       console.log(data);
@@ -48,7 +47,6 @@ class App extends Component {
         username: data.data.username,
         auth: Cookies.get('isAuth'),
       })
-      console.log(this.state);
       this.props.addAuth(this.state)
     })
 

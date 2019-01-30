@@ -31,16 +31,8 @@ class searchbar extends Component {
     this.togglePrice = this.togglePrice.bind(this);
   }
 
-  componentDidMount(){
-    // console.log(this.props);
-  }
-
-  componentDidUpdate(){
-
-  }
 
   togglePrice(e){
-    // console.log(this.id)
     e.target.id === this.searchbarInput.price ? e.target.className = "btn btn-secondary active" : e.target.className = "btn btn-secondary";
   }
 
@@ -58,14 +50,12 @@ class searchbar extends Component {
         return;
     }
     // this.searchbarInput = e.target.value;
-    // console.log(this.searchbarInput);
   }
 
   handlePriceChoice(e){
     this.searchbarInput.price = e.target.id;
     this.togglePrice(e);
     // this.searchbarInput.price === e.target.id ? e.target.className = "btn btn-secondary active" : e.target.className = "btn btn-secondary";
-    // console.log(this.searchbarInput);
 
   }
 
@@ -74,10 +64,8 @@ class searchbar extends Component {
   async handleSubmit(e){
     //searchType selects weather it is search or random
     const searchType = e.target.id === 'submit' ? 'search' : 'random';
-    console.log('line 77 searchbar: ', searchType, this.searchbarInput);
     await fetchAPI(searchType, this.searchbarInput)
     .then((response) => {
-      console.log('line 80: ', response);
       searchType === 'search' ? this.props.addSearchResults(response.data) : searchType === 'random' ? this.props.addRandomRestaurant(response.data) : console.log('err');
       // this.props.addSearchResults(response.data);
     })
