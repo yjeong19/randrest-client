@@ -7,7 +7,7 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom';
-import { addAuth, addUserPageComment, addUserSelection, removeComment } from '../../redux/actions';
+import { addAuth, addUserPageComment, addUserSelection } from '../../redux/actions';
 import { getUserComments, getOneRestaurant, deleteComment } from '../../helpers/routes';
 import './style.css';
 const Cookies = require('js-cookie');
@@ -20,7 +20,6 @@ class userPage extends Component {
     this.AuthButton = this.AuthButton.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
     this.renderComments = this.renderComments.bind(this);
-    this.handleDeleteButton = this.handleDeleteButton.bind(this);
     // this.linkToRest = this.linkToRest.bind(this);
   };
 
@@ -38,18 +37,23 @@ class userPage extends Component {
     this.props.addUserPageComment(comments);
   };
 
+  // linkToRest(e){
+  //   // event.preventDefault();
+  //   console.log(e.target.id);
+  //   getOneRestaurant(e.target.id)
+  //   .then(data => {
+  //     this.props.addUserSelection(data.data)
+  //     this.props.history.push('/restaurant_landing');
+  //    })
+  //   .catch(err => { console.log(err) });
+  // }
+
   handleDeleteButton(e){
     // event.preventDefault();
     console.log(e.target.id)
     const split = e.target.id.split(' ')
     const id = {id: split[1]}
     deleteComment(id)
-    .then(res => {
-      this.props.removeComment(res.data._id);
-    })
-    .catch(err => {
-      console.log(err);
-    })
   }
 
   AuthButton(){
@@ -124,7 +128,6 @@ const mapDispatchToProps = (dispatch) => ({
   addAuth: (auth) => dispatch(addAuth(auth)),
   addUserPageComment: (payload) => dispatch(addUserPageComment(payload)),
   addUserSelection: (payload) => dispatch(addUserSelection(payload)),
-  removeComment: (payload) => dispatch(removeComment(payload)),
 });
 
 const mapStateToProps = ((state, ownProps) => {

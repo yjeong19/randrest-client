@@ -1,6 +1,5 @@
 import {
   ADD_USERPAGE_COMMENTS,
-  REMOVE_COMMENT
 } from '../constants';
 
 const initialState = {
@@ -15,14 +14,6 @@ const userPageReducer = (state=initialState, action) => {
         comments: action.payload,
       }
     break;
-    case REMOVE_COMMENT:
-      console.log(action.payload);
-      const filtered = {
-        ...state,
-        comments: state.comments.filter(comments => comments._id !== action.payload)
-      }
-      console.log('fieltered: ', filtered);
-      return filtered;
   default:
     return state;
   }
