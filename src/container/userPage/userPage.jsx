@@ -8,7 +8,7 @@ import {
   withRouter
 } from 'react-router-dom';
 import { addAuth, addUserPageComment, addUserSelection } from '../../redux/actions';
-import { getUserComments, getOneRestaurant } from '../../helpers/routes';
+import { getUserComments, getOneRestaurant, deleteComment } from '../../helpers/routes';
 import './style.css';
 const Cookies = require('js-cookie');
 
@@ -48,6 +48,14 @@ class userPage extends Component {
   //   .catch(err => { console.log(err) });
   // }
 
+  handleDeleteButton(e){
+    // event.preventDefault();
+    console.log(e.target.id)
+    const split = e.target.id.split(' ')
+    const id = {id: split[1]}
+    deleteComment(id)
+  }
+
   AuthButton(){
     return(
       <div>{
@@ -77,7 +85,7 @@ class userPage extends Component {
               <div className='comment_info col-lg-6'>
                 <p className='user_comment'>{comment.comment}</p>
                 {/* temp using current date */}
-                <button id='delete_button'>Delete</button>
+                <button id={`delete_button ${comment._id}`} onClick={this.handleDeleteButton}>Delete</button>
                 <p className='comment_date'>{Date.now().toString()}</p>
               </div>
             </div>
