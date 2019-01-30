@@ -8,10 +8,10 @@ const axios = require('axios');
 // -- posting comments,
 // -- like/dislike,
 // -- percentage of likes,
-const url = 'https://randrest-server.herokuapp.com'
+// const url = 'https://randrest-server.herokuapp.com'
 
 //dev server
-// const url = 'http://localhost:8081';
+const url = 'http://localhost:8081';
 
 //get single restaurant info from own db
 export const getOneRestaurant = (restaurant_id) => {
@@ -38,7 +38,7 @@ export const postLikes = (id, like) => {
 export const getComments = (params) => {
   // let { id } = param;
   // console.log('grabbing comments', params);
-  return axios.get(`${url}/restaurant/comments`, {
+  return axios.get(`${url}/rest/comments`, {
     params
   })
 };
