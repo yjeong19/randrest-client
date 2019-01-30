@@ -41,6 +41,7 @@ class selectionLandingPage extends Component {
     this.renderLeafletMap();
     this.renderSelectedInfo();
     this.getCommentsAndLikes();
+    console.log(this.props.auth);
     this.setState({
       user: this.props.auth.user,
       user_id: this.props.auth.user_id,
@@ -53,6 +54,7 @@ class selectionLandingPage extends Component {
   updateLikes(e){
     postLikes(this.props.state.selection.id, e.target.id)
     .then(res => {
+      // console.log(res);
       this.props.addLikes(res.data);
     })
     .catch(err => {
@@ -92,11 +94,14 @@ class selectionLandingPage extends Component {
     if(this.props.isAuth == 'true'){
     createComment(this.state)
     .then(res => {
+      console.log(res, 'line 117 ============================');
       this.props.addNewComment(res.data);
     })
     .catch(err => {
       console.log(err);
     })}else{
+        console.log('line 109');
+        console.log(this.props.isAuth);
         // return <Redirect to='/login' />
         alert('please log in');
     }
@@ -106,6 +111,7 @@ class selectionLandingPage extends Component {
     return(
       <div>
         {this.props.comments.map((comment, i)=>{
+          console.log('line 119: ', comment)
           return(
             <div className = 'commentCard row'>
               <h1 className='comment_user col-lg-12'>{comment.username}</h1>
@@ -159,6 +165,7 @@ class selectionLandingPage extends Component {
     if(map_data.coordinates){
       coord = map_data.coordinates;
     }
+    console.log(coord);
     let { latitude, longitude } = coord;
     // let long = coor.longitude !== null ? coor.longitude: 0;
     if(latitude){
