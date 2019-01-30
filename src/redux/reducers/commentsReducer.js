@@ -1,6 +1,7 @@
 import {
   ADD_COMMENTS,
   ADD_NEW_COMMENT,
+  REMOVE_COMMENT,
 } from '../constants';
 
 let initialReducer = [];
