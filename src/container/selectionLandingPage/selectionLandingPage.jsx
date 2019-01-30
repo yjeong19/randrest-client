@@ -41,7 +41,7 @@ class selectionLandingPage extends Component {
     this.renderLeafletMap();
     this.renderSelectedInfo();
     this.getCommentsAndLikes();
-    console.log(this.props.auth);
+    (this.props.auth);
     this.setState({
       user: this.props.auth.user,
       user_id: this.props.auth.user_id,
@@ -54,28 +54,28 @@ class selectionLandingPage extends Component {
   updateLikes(e){
     postLikes(this.props.state.selection.id, e.target.id)
     .then(res => {
-      // console.log(res);
+      // (res);
       this.props.addLikes(res.data);
     })
     .catch(err => {
-      console.log(err);
+      (err);
     })
   }
 
   getCommentsAndLikes(){
     //also gets likes ---
     //gets comments from db and then puts it into commentsReducer
-    // console.log(this.props.state.selection);
+    // (this.props.state.selection);
     let info = this.props.state.selection ? this.props.state.selection : '';
     if(info !== '') {
       getComments(info)
       .then(res => {
         res.data[0] !== undefined ? this.props.addComments(res.data[0].comments) : this.props.addComments([])
-        // console.log(typeof(res.data[0].likes));
+        // (typeof(res.data[0].likes));
         res.data[0] !== undefined ? this.props.addLikes(res.data[0].likes) : this.props.addLikes({});
       })
       .catch(err => {
-        console.log(err);
+        (err);
       })
     }else {
       return null;
@@ -83,7 +83,7 @@ class selectionLandingPage extends Component {
   };
 
   handleCommentInput(e){
-    // console.log(this.);
+    // (this.);
     this.setState({
       comment: e.target.value,
     })
@@ -94,14 +94,14 @@ class selectionLandingPage extends Component {
     if(this.props.isAuth == 'true'){
     createComment(this.state)
     .then(res => {
-      console.log(res, 'line 117 ============================');
+      (res, 'line 117 ============================');
       this.props.addNewComment(res.data);
     })
     .catch(err => {
-      console.log(err);
+      (err);
     })}else{
-        console.log('line 109');
-        console.log(this.props.isAuth);
+        ('line 109');
+        (this.props.isAuth);
         // return <Redirect to='/login' />
         alert('please log in');
     }
@@ -111,7 +111,7 @@ class selectionLandingPage extends Component {
     return(
       <div>
         {this.props.comments.map((comment, i)=>{
-          console.log('line 119: ', comment)
+          ('line 119: ', comment)
           return(
             <div className = 'commentCard row'>
               <h1 className='comment_user col-lg-12'>{comment.username}</h1>
@@ -132,15 +132,15 @@ class selectionLandingPage extends Component {
   //function below creates newly selected restaurants, if it had not been created in DB alraedy.
   //function is run at componentdidmount to check existance.
   renderSelectedInfo(){
-    // console.log(this.props.state.selection);
+    // (this.props.state.selection);
     let info = this.props.state.selection ? this.props.state.selection : '';
     if(info !== '') {
       checkPost(info)
       .then(res => {
-        console.log(res);
+        (res);
       })
       .catch(err => {
-        console.log(err);
+        (err);
       })
     }else{
       return null;
@@ -158,14 +158,14 @@ class selectionLandingPage extends Component {
   };
 
   async renderLeafletMap(){
-    // console.log(this.props.state.selection);
+    // (this.props.state.selection);
     let coord = { latitude: 0, longitude: 0}
     const map_data = await this.props.state.selection;
     // coord = await this.props.state.selection !== null ? this.props.state.selection.coordinates : null;
     if(map_data.coordinates){
       coord = map_data.coordinates;
     }
-    console.log(coord);
+    (coord);
     let { latitude, longitude } = coord;
     // let long = coor.longitude !== null ? coor.longitude: 0;
     if(latitude){

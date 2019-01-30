@@ -1,16 +1,16 @@
 const axios = require('axios');
 
 //dep server
-// const url = 'https://randrest-server.herokuapp.com';
+const url = 'https://randrest-server.herokuapp.com';
 
 // dev server
-const url = 'http://localhost:8081';
+// const url = 'http://localhost:8081';
 
 
 export const registerUser = (userInfo) => {
-  console.log('register activated');
-  console.log(userInfo);
-  // console.log(userInfo);
+  ('register activated');
+  (userInfo);
+  // (userInfo);
   return axios.post(`${url}/users/register`, {
     email: userInfo.email,
     username: userInfo.name,
@@ -20,8 +20,8 @@ export const registerUser = (userInfo) => {
 };
 
 export const loginUser = (userInfo) => {
-  console.log('loging')
-  console.log(userInfo);
+  ('loging')
+  (userInfo);
   return axios.post(`${url}/users/login`, {
     email: userInfo.email,
     password: userInfo.password,
@@ -29,14 +29,14 @@ export const loginUser = (userInfo) => {
 };
 
 export const userInfo = (token) => {
-  console.log(token);
+  (token);
   return axios.get(`${url}/users/current`,{
     headers: {
       'Authorization': token,
     }
   })
   // .then(response => {
-  //   console.log(response)
+  //   (response)
   // })
-  // .catch(error => {console.log(error)})
+  // .catch(error => {(error)})
 }

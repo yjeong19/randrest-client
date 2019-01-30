@@ -82,7 +82,7 @@ class signupForm extends Component {
     e.preventDefault();
     registerUser(this.state)
     .then(res => {
-      console.log(res.data);
+      (res.data);
       Cookies.remove('token');
       Cookies.remove('isAuth');
       Cookies.set('token', res.data.token, {expires: 1});
@@ -100,14 +100,14 @@ class signupForm extends Component {
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
-      console.log(err);
+      (err);
     })
     // userInfo();
   };
 
   handleLoginSubmit(e){
     e.preventDefault();
-    console.log(e.target.id);
+    (e.target.id);
     loginUser(this.state)
     .then(res => {
       Cookies.remove('token');
@@ -123,18 +123,18 @@ class signupForm extends Component {
           user_id: res.data.payload.id,
         }
       });
-      console.log('line 115: ', this.state)
+      ('line 115: ', this.state)
       this.props.addAuth(this.state.payload);
       // this.props.history.push('/protected');
     })
     .then(userInfo(Cookies.get('token')))
     .catch(err => {
-      console.log(err);
+      (err);
     })
   }
 
   componentDidUpdate(){
-    console.log(this.props.isAuth);
+    (this.props.isAuth);
   }
 
   handleRegister(){

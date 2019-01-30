@@ -1,9 +1,9 @@
 const axios = require('axios');
-// const url = 'https://randrest-server.herokuapp.com'
-const url = 'http://localhost:8081';
+const url = 'https://randrest-server.herokuapp.com'
+// const url = 'http://localhost:8081';
 
 const fetchAPI = (searchType, searchbarInput) => {
-  console.log(searchType, searchbarInput);
+  (searchType, searchbarInput);
   return axios.get(`${url}/yelp/${searchType}`, {
     params: {
       term: searchbarInput.term,
@@ -13,11 +13,11 @@ const fetchAPI = (searchType, searchbarInput) => {
     }
   })
   // .then((response) => {
-  //   // console.log(response.data);
+  //   // (response.data);
   //   return response.data;
   // })
   // .catch(err => {
-  //   console.log(err);
+  //   (err);
   // })
 }
 

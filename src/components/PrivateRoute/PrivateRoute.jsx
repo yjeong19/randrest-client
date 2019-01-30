@@ -7,7 +7,7 @@ export const PrivateRoute = ({ component: Component, props, ...rest }) => (
   <Route {...rest} render={(props) => (
     // 1 === 1
       // ?
-      <Component ComponentDidMount={console.log(rest)}/>
-      // : <Redirect to='/login' componentDidMount={console.log('login')}/>
+      <Component ComponentDidMount={(rest)}/>
+      // : <Redirect to='/login' componentDidMount={('login')}/>
     )} />
   );

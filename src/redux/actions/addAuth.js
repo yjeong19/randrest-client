@@ -3,7 +3,7 @@ import {
 } from '../constants';
 
 const addAuth = (payload) => {
-  console.log('add Auth', payload);
+  ('add Auth', payload);
   return {
     type: IS_AUTH,
     payload
