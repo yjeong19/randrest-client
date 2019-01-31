@@ -12,7 +12,6 @@ const initialState = {
 const authReducer = (state=initialState, action) => {
   switch(action.type){
     case IS_AUTH:
-      console.log(action)
       return {...state,
         isAuth: action.payload.auth,
         token: action.payload.token,

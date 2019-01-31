@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 class resultsPage extends Component {
 
   componentDidMount(){
-    // console.log(this.props);
+    // (this.props);
   }
 
   componentDidUpdate(){
@@ -17,7 +17,7 @@ class resultsPage extends Component {
   renderCards(){
     const search = this.props.results.search;
     const random = this.props.results.random;
-    // console.log(this.props.results)
+    // (this.props.results)
     if(this.props.results.state === 'search' && search !== null){
       return (
         search.map((info, i)=> {
@@ -62,7 +62,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ((state, ownProps) => {
-  // console.log(state);
+  // (state);
   return {
     results: state.searchResultsReducer,
   }

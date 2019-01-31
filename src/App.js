@@ -39,16 +39,13 @@ class App extends Component {
       isAuth: Cookies.get('isAuth'),
       token: Cookies.get('token'),
     });
-    console.log(this.state);
     userInfo(this.state.token)
     .then(data => {
-      console.log(data);
       this.setState({
         user_id: data.data.id,
         username: data.data.username,
         auth: Cookies.get('isAuth'),
       })
-      console.log(this.state);
       this.props.addAuth(this.state)
     })
 

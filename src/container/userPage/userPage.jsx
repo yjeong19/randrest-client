@@ -24,12 +24,7 @@ class userPage extends Component {
     // this.linkToRest = this.linkToRest.bind(this);
   };
 
-  componentDidUpdate(){
-    console.log(this.props);
-  }
-
   componentDidMount(){
-    console.log('line 31 userpage: ', this.props);
     this.addComments();
   }
 
@@ -38,26 +33,18 @@ class userPage extends Component {
     this.props.addUserPageComment(comments);
   };
 
-  // linkToRest(e){
-  //   // event.preventDefault();
-  //   console.log(e.target.id);
-  //   getOneRestaurant(e.target.id)
-  //   .then(data => {
-  //     this.props.addUserSelection(data.data)
-  //     this.props.history.push('/restaurant_landing');
-  //    })
-  //   .catch(err => { console.log(err) });
-  // }
+
 
   handleDeleteButton(e){
     // event.preventDefault();
-    console.log(e.target.id)
     const split = e.target.id.split(' ')
     const id = {id: split[1]}
     deleteComment(id)
     .then(res => {
-      console.log(res);
-      this.props.removeComments(res.data._id)
+      this.props.removeComments(res.data._id);
+    })
+    .catch(err => {
+      console.log(err);
     })
     .catch(err =>{console.log(err)})
   }
@@ -83,7 +70,6 @@ class userPage extends Component {
       <div>{this.props.auth.isAuth == 'true' && this.props.userComments ? (
         <div>
         {this.props.userComments.map((comment, i)=>{
-          // console.log('line 119: ', comment)
           return(
             <div className ={`commentCard row`}>
               <h1 className={`comment_user col-lg-12`} id={comment.restaurant_id} >{comment.restaurant_name}</h1>
@@ -107,7 +93,6 @@ class userPage extends Component {
   logoutUser(){
     Cookies.set('isAuth', false);
     Cookies.set('token', '');
-    console.log(document.cookie);
     this.props.addAuth(Cookies.get('isAuth'));
     return(
       <Route exact path = '/' />
@@ -138,7 +123,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const mapStateToProps = ((state, ownProps) => {
-  // console.log(state);
+  // (state);
   return {
     auth: state.authReducer,
     userComments: state.userPageReducer.comments,
