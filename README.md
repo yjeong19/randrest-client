@@ -12,43 +12,25 @@
 ### the like and dislike button triggers a call to server to findOneAndUpdate the likes field in the backend.
   * ![like/dislike](./mvp_pics/like_percentage.png)
 
-### comment section -- needs finishing based on user private routes. can leave comment and name, will incorporate authentication and deletion of comments.
+### comment section -- needs finishing based on user private routes. can leave comment and comments will be displayed on the restaurant's page as well as user's page
   * ![comment](./mvp_pics/comment_section.png)
 
-------------------------------------------------------
-# NOTES
+### register or login in order to leave a comment
+  * ![register](./mvp_pics/login.png)
 
-  * authentication backend completed - using express/bcrypt and mongoose. need to incorporate front end authentication based on login and define private routes.
+### user page will have a list of comments that can be deleted
+  * ![beforedelete](./mvp_pics/beforedelete.png)
 
+### if user deletes the comment from the userpage, it will remove from restaurant as well as user's page.
 
-# random_restaurant
-randomly selects restaurant using yelp api
-#MVP ready to deploy
+  * ![usercomment](./mvp_pics/usercomment.png)
 
+---------------------------------------------------
+login token will expire after 1 day and is stored in Cookies.
 
+- in order to register, you need to provide a email (can be fake) and a password.
 
-
-----------------------------------------------------
-
-## Things to do
-* ~~Connect Yelp API~~
-* ~~Create db to post comments~~
-  * ~~Restaurant Schema~~
-  * User Schema
-* ~~route to landing page based on restaurant ID~~
-  * figure out what data to pass to landing package
-  * post comments on page -- connect db to landing
-* ~~keep track of likes~~
-  * track percentages
-* Need Auth
-* ~~Incorporate Redux~~
-* ~~Create Routes~~
-* Create error handler
-* ~~Comment sections~~
-* ~~add other options for search~~
-  * Price
-  * Stars
-
+- password is hashed using bcrypt and actual password is never saved.
 
 ---------------------------------------------------
 ## STACK
