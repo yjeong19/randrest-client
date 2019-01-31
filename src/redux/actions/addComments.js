@@ -2,8 +2,15 @@ import {
   ADD_COMMENTS,
   ADD_NEW_COMMENT,
   ADD_USERPAGE_COMMENTS,
+  REMOVE_COMMENTS,
 } from '../constants';
 
+const removeComments = (payload) => {
+  return {
+    type: REMOVE_COMMENTS,
+    payload,
+  }
+};
 
 const addComments = (comments) => {
   return {
@@ -27,6 +34,7 @@ const addUserPageComment = (payload) => {
 }
 
 export {
+  removeComments,
   addComments,
   addNewComment,
   addUserPageComment,
